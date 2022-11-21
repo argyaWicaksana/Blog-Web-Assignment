@@ -1,0 +1,12 @@
+/* h1{
+    text-align: center !important;
+} */
+
+.feather{
+    width: 16px;
+    height: 16px;
+}
+
+.login-btn:hover{
+    text-decoration: underline;
+}
