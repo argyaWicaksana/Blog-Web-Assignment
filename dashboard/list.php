@@ -3,7 +3,7 @@
 <article class="mt-4 container">
     <h1>My Article</h1>
     <hr>
-    <table class="table table-striped">
+    <table class="table table-striped mb-5">
         <thead>
             <tr>
                 <th scope="col">No</th>
@@ -63,6 +63,7 @@
             </tr>
         </tbody>
     </table>
+    <a class="btn btn-success" href="create.php">Create New Article</a>
 </article>
 </main>
 </div>
