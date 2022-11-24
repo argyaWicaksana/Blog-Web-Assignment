@@ -1,4 +1,4 @@
-<?php include 'templates/header.php'; ?>
+<?php include '../templates/header.php'; ?>
 
 <article class="mt-4 container">
     <h1>My Article</h1>
@@ -68,4 +68,4 @@
 </main>
 </div>
 
-<?php include 'templates/footer.php'; ?>
+<?php include '../templates/footer.php'; ?>
