@@ -8,7 +8,7 @@
 // }
 
 // Include koneksi database.
-require_once "connect.php";
+require_once "../connect.php";
 
 // var_dump(isset($_POST['login']));
 
