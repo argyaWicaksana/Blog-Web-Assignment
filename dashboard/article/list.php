@@ -1,6 +1,5 @@
 <?php include '../templates/header.php'; ?>
 
-<article class="mt-4 container">
     <h1>My Article</h1>
     <hr>
     <table class="table table-striped mb-5">
