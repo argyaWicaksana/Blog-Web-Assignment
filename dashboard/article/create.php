@@ -3,7 +3,7 @@
 <h1 class="tes">Create Your Article</h1>
 <hr>
 <div class="row">
-    <form action="#" method="post" enctype="multipart/form-data" class="col-lg-9">
+    <form action="../process/createArticle.php" method="post" enctype="multipart/form-data" class="col-lg-9">
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
             <input name="title" type="text" class="form-control" id="title" placeholder="Enter your Title" required>
@@ -38,8 +38,8 @@
             </select>
         </div>
         <div class="mb-3">
-            <label name="file" for="img" class="form-label">Image</label>
-            <input class="form-control" type="file" id="img" required>
+            <label for="img" class="form-label">Image</label>
+            <input name="file" class="form-control" type="file" id="img" required>
         </div>
         <div class="mb-3">
             <label for="text" class="form-label">Text</label>
@@ -47,7 +47,7 @@
             <trix-editor input="x"></trix-editor>
         </div>
         <div class="mb-3 d-md-flex justify-content-md-end">
-            <button type="submit" class="btn btn-success">Submit</button>
+            <button name="submit" type="submit" class="btn btn-success">Submit</button>
         </div>
     </form>
 </div>
