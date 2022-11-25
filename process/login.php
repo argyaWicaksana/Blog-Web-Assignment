@@ -2,13 +2,13 @@
 // // Memulai session
 // session_start();
 
-// Jika ditemukan session, maka user akan otomatis dialihkan ke halaman admin.
-if (isset($_SESSION['username'])) {
-    header("location: ../dashboard/index.php");
-}
+// // Jika ditemukan session, maka user akan otomatis dialihkan ke halaman admin.
+// if (isset($_SESSION['username'])) {
+//     header("location: ../dashboard/index.php");
+// }
 
 // Include koneksi database.
-require_once "connect.php";
+require_once "../connect.php";
 
 // var_dump(isset($_POST['login']));
 
@@ -19,9 +19,9 @@ if (isset($_POST['login'])) {
     $userpass = $_POST['password']; // password yang di inputkan oleh user lewat form login.
 
     // Query ke database.
-    $sql = mysqli_query($connect, "SELECT username, password FROM user WHERE username = '$username'");
+    $sql = mysqli_query($connect, "SELECT username, password, isAdmin FROM user WHERE username = '$username'");
 
-    list($username, $password) = mysqli_fetch_array($sql);
+    list($username, $password, $role) = mysqli_fetch_array($sql);
 
     // Jika data ditemukan dalam database, maka akan melakukan validasi dengan password_verify.
     if (mysqli_num_rows($sql) > 0) {
@@ -35,6 +35,7 @@ if (isset($_POST['login'])) {
             // Buat session baru.
             session_start();
             $_SESSION['username'] = $username;
+            $_SESSION['role'] = $role;
 
             // Jika login berhasil, user akan diarahkan ke halaman admin.
             header("location: ../dashboard/index.php");
