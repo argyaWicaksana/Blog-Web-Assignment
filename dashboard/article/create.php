@@ -3,7 +3,7 @@
 <h1 class="tes">Create Your Article</h1>
 <hr>
 <div class="row">
-    <form action="#" method="post" class="col-lg-9">
+    <form action="#" method="post" enctype="multipart/form-data" class="col-lg-9">
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
             <input name="title" type="text" class="form-control" id="title" placeholder="Enter your Title" required>
@@ -38,7 +38,7 @@
             </select>
         </div>
         <div class="mb-3">
-            <label for="img" class="form-label">Image</label>
+            <label name="file" for="img" class="form-label">Image</label>
             <input class="form-control" type="file" id="img" required>
         </div>
         <div class="mb-3">
