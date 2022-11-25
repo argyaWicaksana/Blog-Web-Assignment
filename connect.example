@@ -1,4 +1,5 @@
 <?php
+    define('baseURL', explode('dashboard', $_SERVER['REQUEST_URI'])[0]);
     $hostname = $_SERVER['SERVER_NAME'];
     $username = 'root';
     $password = '';

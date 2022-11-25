@@ -39,7 +39,7 @@
         </div>
         <div class="mb-3">
             <label for="img" class="form-label">Image</label>
-            <input name="file" class="form-control" type="file" id="img" required>
+            <input name="file" class="form-control" type="file" id="img" accept="image/png, image/gif, image/jpeg">
         </div>
         <div class="mb-3">
             <label for="text" class="form-label">Text</label>

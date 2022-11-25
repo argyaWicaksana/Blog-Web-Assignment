@@ -1,13 +1,15 @@
 <?php
 include '../../connect.php';
+session_start();
 
 // hooopeee it works. so sleepy
+// var_dump($_FILES['file']['name']);
 
 if (isset($_POST['submit'])) {
 
    // Image Cek
    $image = $_FILES['file']['name'];
-   $target_dir = "../uploads/";
+   $target_dir = "../../img/article/";
    $target_file = $target_dir . basename($_FILES["file"]["name"]);
 
    // Select file type
@@ -24,10 +26,13 @@ if (isset($_POST['submit'])) {
          $title = $_POST['title'];
          $category = $_POST['category'];
          $content = $_POST['content'];
+         $image = baseURL. 'img/article/' . $image;
+         $id = $_SESSION['user_id'];
 
          if ($title != '') {
 
-            mysqli_query($connect, "INSERT INTO article(title,img,category_id,content) VALUES('" . $title . "','" . $image . "','" . $category . "','" . $content . "') ");
+            mysqli_query($connect, "INSERT INTO article(title, img, category_id, user_id, content) 
+            VALUES('$title', '$image', '$category', '$id',". " '".$content."')");
             header('location: ../index.php');
          }
       }
