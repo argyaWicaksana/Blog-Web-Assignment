@@ -1,4 +1,9 @@
-<?php include 'templates/header.php' ?>
+<?php include 'templates/header.php';
+
+if (isset($_SESSION['username'])) {
+    header("location: dashboard/index.php");
+}
+?>
 <main class="container mt-5 col-lg-4 border rounded p-5">
     <h1 class="text-center mb-4">Login</h1>
     <form action="process/login.php" method="post">
