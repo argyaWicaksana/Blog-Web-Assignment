@@ -1,3 +1,14 @@
+<?php
+// Session Check
+session_start();
+$cek = 0;
+if (isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+    $role = $_SESSION['role'];
+    $cek = 1;
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,12 +52,32 @@
                                 <button class="btn btn-outline-light" type="submit">Search</button>
                             </form>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="login.php" name="login">
-                                Login
-                                <i data-feather="log-in"></i>
-                            </a>
-                        </li>
+                        <?php
+                        if ($cek != 1) {
+                        ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="login.php" name="login">
+                                    Login
+                                    <i data-feather="log-in"></i>
+                                </a>
+                            </li>
+                        <?php
+                        } else {
+                        ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="dashboard/index.php" name="dashboard">
+                                    <i data-feather="user"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="process/logout.php" name="logout">
+                                    <i data-feather="log-out"></i>
+                                </a>
+                            </li>
+                        <?php
+                        }
+                        ?>
+
                     </ul>
                 </div>
             </div>

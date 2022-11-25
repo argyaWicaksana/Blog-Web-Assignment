@@ -1,10 +1,16 @@
 <?php
 define('baseURL', explode('dashboard', $_SERVER['REQUEST_URI'])[0]);
 define('ROOT', dirname(__DIR__, 2));
+// include "dashboard/process/throw.php";
+// Check or throw
 session_start();
 if (isset($_SESSION['username']) == false) {
     header("location:../login.php");
 }
+
+$username = $_SESSION['username'];
+$role = $_SESSION['role'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,12 +58,24 @@ if (isset($_SESSION['username']) == false) {
                                 My Article
                             </a>
                         </li>
+                        <?php
+                        if ($role == 1) {
+                        ?>
+                            <li>
+                                <a href="<?= baseURL . 'dashboard/user/list.php' ?>" class="nav-link text-white <?= str_contains($_SERVER['SCRIPT_NAME'], 'TugasBesar/dashboard/article') ? 'active' : '' ?>">
+                                    <i data-feather="users" class="me-3"></i>
+                                    User
+                                </a>
+                            </li>
+                        <?php
+                        }
+                        ?>
+
                     </ul>
                     <hr>
                     <div class="dropdown" id="profileimg">
                         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="https://github.com/mdo.png" alt="" class="rounded-circle me-2" width="32" height="32">
-                            <strong>mdo</strong>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                             <li><a class="dropdown-item" href="#">Settings</a></li>
@@ -65,7 +83,7 @@ if (isset($_SESSION['username']) == false) {
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Sign out</a></li>
+                            <li><a class="dropdown-item" href="<?= baseURL . 'process/logout.php' ?>">Sign out</a></li>
                         </ul>
                     </div>
                 </div>
