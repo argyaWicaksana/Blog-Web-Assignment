@@ -1,5 +1,6 @@
 <?php
-define('ROOT', explode('dashboard', $_SERVER['REQUEST_URI'])[0]);
+define('baseURL', explode('dashboard', $_SERVER['REQUEST_URI'])[0]);
+define('ROOT', dirname(__DIR__, 2));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,40 +14,43 @@ define('ROOT', explode('dashboard', $_SERVER['REQUEST_URI'])[0]);
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
+
     <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
+
     <style>
         trix-toolbar [data-trix-button-group="file-tools"] {
             display: none;
         }
     </style>
+    <link rel="stylesheet" href="<?=baseURL ?>css/style.css?v=<?= time() ?>">
 </head>
 
-<body class="h-100">
+<body>
     <!-- sidebar -->
-    <div class="d-flex ">
+    <div class="d-flex">
         <div style="min-height: 100vh;">
             <div class="collapse collapse-horizontal h-100 show" id="collapseWidthExample">
                 <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark h-100" style="width: 280px;">
-                    <a href="<?= ROOT ?>" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <a href="<?= baseURL ?>" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                         <span class="fs-4">Blog <span class="text-info">Web</span></span>
                     </a>
                     <hr>
                     <ul class="nav nav-pills flex-column mb-auto">
                         <li>
-                            <a href="<?= ROOT . 'dashboard' ?>" class="nav-link text-white <?= str_contains($_SERVER['SCRIPT_NAME'], 'TugasBesar/dashboard/index.php') ? 'active' : '' ?>">
+                            <a href="<?= baseURL . 'dashboard' ?>" class="nav-link text-white <?= str_contains($_SERVER['SCRIPT_NAME'], 'TugasBesar/dashboard/index.php') ? 'active' : '' ?>">
                                 <i data-feather="home" class="me-3"></i>
                                 Dashboard
                             </a>
                         </li>
                         <li>
-                            <a href="<?= ROOT . 'dashboard/article/list.php' ?>" class="nav-link text-white <?= str_contains($_SERVER['SCRIPT_NAME'], 'TugasBesar/dashboard/article') ? 'active' : '' ?>">
+                            <a href="<?= baseURL . 'dashboard/article/list.php' ?>" class="nav-link text-white <?= str_contains($_SERVER['SCRIPT_NAME'], 'TugasBesar/dashboard/article') ? 'active' : '' ?>">
                                 <i data-feather="file-text" class="me-3"></i>
                                 My Article
                             </a>
                         </li>
                     </ul>
                     <hr>
-                    <div class="dropdown">
+                    <div class="dropdown" id="profileimg">
                         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="https://github.com/mdo.png" alt="" class="rounded-circle me-2" width="32" height="32">
                             <strong>mdo</strong>
@@ -70,5 +74,20 @@ define('ROOT', explode('dashboard', $_SERVER['REQUEST_URI'])[0]);
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-controls="collapseWidthExample" aria-expanded="true">
                         <span class="navbar-toggler-icon"></span>
                     </button>
+                    <div class="dropdown d-sm-none">
+                        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://github.com/mdo.png" alt="" class="rounded-circle me-2" width="32" height="32">
+                            <strong>mdo</strong>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Sign out</a></li>
+                        </ul>
+                    </div>
                 </div>
             </nav>
+            <article class="mt-4 mx-md-5 Article">

@@ -1,7 +1,6 @@
 <?php include '../templates/header.php' ?>
 
-<article class="mt-4 container">
-    <h1>Create Your Article</h1>
+    <h1 class="tes">Create Your Article</h1>
     <hr>
     <div class="row">
         <form action="#" method="post" class="col-lg-9">
