@@ -24,15 +24,15 @@ include 'templates/header.php';
     <h1 class="text-center mb-4">Register</h1>
     <form action="process/register.php" method="post">
         <div class="form-floating mb-3">
-            <input name="email" type="email" class="form-control" placeholder="name@example.com">
+            <input name="email" type="email" class="form-control" placeholder="name@example.com" required>
             <label for="email">Email address</label>
         </div>
         <div class="form-floating mb-3">
-            <input name="name" type="text" class="form-control" placeholder="Username">
+            <input name="username" type="text" class="form-control" placeholder="Username" required>
             <label for="name">Username</label>
         </div>
         <div class="form-floating mb-3">
-            <input id="password" name="password" type="password" class="form-control" placeholder="Password">
+            <input id="password" name="password" type="password" class="form-control" placeholder="Password" required>
             <label for="password">Password</label>
         </div>
         <div class="form-floating">
@@ -40,7 +40,7 @@ include 'templates/header.php';
             <label for="confirm-password">Confirm Password</label>
             <div id="invalid" class="invalid-feedback"></div>
         </div>
-        <button id="button" class="mt-4 btn btn-primary w-100" type="submit">Register</button>
+        <button name="register" id="button" class="mt-4 btn btn-primary w-100" type="submit">Register</button>
         <small>Already have account? <a href="login.php">Login</a></small>
     </form>
 
