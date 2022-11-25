@@ -1,6 +1,6 @@
 <?php
 // Mengambil mekanisme koneksi
-require_once('connect.php');
+require_once('../connect.php');
 
 // Cek apakah data ada ?
 if (isset($_POST['register'])) {
