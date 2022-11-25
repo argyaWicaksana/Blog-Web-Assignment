@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,10 +28,10 @@
 
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link <?= str_contains($_SERVER['SCRIPT_NAME'], 'TugasBesar/index.php') ? 'active': '' ?>" aria-current="page" href="index.php">Home</a>
+                            <a class="nav-link <?= str_contains($_SERVER['SCRIPT_NAME'], 'TugasBesar/index.php') ? 'active' : '' ?>" aria-current="page" href="index.php">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link <?= str_contains($_SERVER['SCRIPT_NAME'], 'TugasBesar/categories.php') ? 'active': '' ?>" href="categories.php">Categories</a>
+                            <a class="nav-link <?= str_contains($_SERVER['SCRIPT_NAME'], 'TugasBesar/categories.php') ? 'active' : '' ?>" href="categories.php">Categories</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -43,7 +42,7 @@
                             </form>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="login.php">
+                            <a class="nav-link" href="login.php" name="login">
                                 Login
                                 <i data-feather="log-in"></i>
                             </a>
