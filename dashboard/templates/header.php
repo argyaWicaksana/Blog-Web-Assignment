@@ -1,5 +1,9 @@
 <?php
 define('ROOT', explode('dashboard', $_SERVER['REQUEST_URI'])[0]);
+session_start();
+if (isset($_SESSION['username']) == false) {
+    header("location:../login.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

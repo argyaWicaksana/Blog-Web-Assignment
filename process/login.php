@@ -1,6 +1,6 @@
 <?php
-// // Memulai session
-// session_start();
+// Memulai session
+session_start();
 
 // Jika ditemukan session, maka user akan otomatis dialihkan ke halaman admin.
 if (isset($_SESSION['username'])) {
