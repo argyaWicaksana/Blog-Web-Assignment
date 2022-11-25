@@ -7,12 +7,13 @@ include 'templates/header.php';
         let actual = document.getElementById("password").value;
         let button = document.getElementById('button');
         if (data !== actual) {
-            // button.style.display = "none";
-            button.setAttribute("disabled", "");
+            button.style.display = "none";
+            // button.setAttribute("disabled");
             confirm.add('is-invalid');
             document.getElementById("invalid").innerHTML = 'Password does not match !';
         } else {
-            // button.style.display = "block";
+            button.style.display = "block";
+            // button.removeAttribute("disabled");
             confirm.remove('is-invalid');
             document.getElementById("invalid").innerHTML = '';
         }
