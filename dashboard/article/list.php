@@ -37,7 +37,7 @@
                     <a href="edit.php?a_id=<?= $article['article_id'] ?>" class="badge bg-warning">
                         <i data-feather="edit"></i>
                     </a>
-                    <a href="#" class="badge bg-danger">
+                    <a href="../process/deleteArticle.php?a_id=<?= $article['article_id'] ?>" class="badge bg-danger">
                         <i data-feather="trash-2"></i>
                     </a>
                 </td>
