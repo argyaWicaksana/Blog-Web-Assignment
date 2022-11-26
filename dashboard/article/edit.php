@@ -1,50 +1,53 @@
-<?php include '../templates/header.php' ?>
+<?php
+include '../templates/header.php';
+include "../../connect.php";
 
-<h1 class="tes">Create Your Article</h1>
+$sql = "SELECT * FROM `category`";
+$all_categories = mysqli_query($connect, $sql);
+$a_id = $_GET['a_id'];
+
+$sql = "SELECT * FROM article WHERE article_id=$a_id";
+$article = mysqli_query($connect, $sql);
+$article = $article->fetch_assoc();
+?>
+
+<h1 class="tes">Edit Article</h1>
 <hr>
 <div class="row">
-    <form action="../process/createArticle.php" method="post" enctype="multipart/form-data" class="col-lg-9">
+    <form action="../process/updateArticle.php" method="post" enctype="multipart/form-data" class="col-lg-9">
+        <input type="hidden" name="a_id" value="<?= $a_id ?>">
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
-            <input name="title" type="text" class="form-control" id="title" placeholder="Enter your Title" required>
+            <input name="title" value="<?= $article['title'] ?>" type="text" class="form-control" id="title" placeholder="Enter your Title" required>
         </div>
         <div class="mb-3">
             <label for="category" class="form-label">Category</label>
             <select name="category" class="form-select" id="category">
+                <!-- <option selected>-- Select Category --</option> -->
                 <?php
-                // Call connection
-                include "../../connect.php";
-                $sql = "SELECT * FROM `category`";
-                $all_categories = mysqli_query($connect, $sql);
-                // using this loop to take the data
-                // $all_categories variable means all of them wkwk
-                // eventually print them individually
-                // ndak bisa basa enggress
 
-                // Start of the loop
                 while ($category = mysqli_fetch_array(
                     $all_categories,
                     MYSQLI_ASSOC
                 )) :;
                 ?>
-                    <option value="<?php echo $category["id"]; ?>">
-                        <?php echo $category["name"]; ?>
+                    <option <?= $article['category_id'] == $category['id'] ? 'selected' : '' ?> value="<?= $category["id"]; ?>">
+                        <?= $category["name"]; ?>
                     </option>
                 <?php
                 endwhile;
-                // Akhir dari loop
                 ?>
             </select>
         </div>
         <div class="mb-3">
             <label for="img" class="form-label">Image</label>
             <input name="file" class="form-control" type="file" id="img" accept="image/png, image/gif, image/jpeg">
-            <!-- image preview -->
-            <img class="img-fluid col-sm-9 mt-3 image-preview" src="" alt="">
+            <!-- image-preview -->
+            <img class="img-fluid col-sm-9 mt-3 image-preview" src="<?= isset($article['img']) ? $article['img'] : '' ?>" alt="">
         </div>
         <div class="mb-3">
             <label for="text" class="form-label">Text</label>
-            <input id="x" type="hidden" name="content">
+            <input id="x" type="hidden" name="content" value="<?= $article['content'] ?>">
             <trix-editor input="x"></trix-editor>
         </div>
         <div class="mb-3 d-md-flex justify-content-md-end">

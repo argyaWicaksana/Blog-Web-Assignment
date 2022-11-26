@@ -3,16 +3,21 @@ include '../../connect.php';
 define('baseURL', explode('dashboard', $_SERVER['REQUEST_URI'])[0]);
 session_start();
 
-// hooopeee it works. so sleepy
-// var_dump($_FILES['file']['name']);
-
 if (isset($_POST['submit'])) {
    $title = $_POST['title'];
    $category = $_POST['category'];
    $content = $_POST['content'];
    $id = $_SESSION['user_id'];
+   $a_id = $_POST['a_id'];
 
    if ($_FILES['file']['name'] != '') { // is image file avaible?
+      //delete old image
+      $sql = "SELECT img FROM article WHERE article_id=$a_id";
+      $file = mysqli_query($connect, $sql);
+      $file = $file->fetch_assoc();
+      $file_name = basename($file['img'], '?' . $_SERVER['QUERY_STRING']);
+      unlink('../../img/article/'.$file_name);
+
       // Image Cek
       $image = $_FILES['file']['name'];
       $target_dir = "../../img/article/";
@@ -32,8 +37,9 @@ if (isset($_POST['submit'])) {
             $image = baseURL . 'img/article/' . $image;
 
             if ($title != '') {
-               mysqli_query($connect, "INSERT INTO article(title, img, category_id, user_id, content) 
-                  VALUES('$title', '$image', '$category', '$id'," . " '" . $content . "')");
+               $sql = "UPDATE article SET title='$title', img='$image', category_id='$category', content='" .$content.
+                  "' WHERE article_id='$a_id'";
+               mysqli_query($connect, $sql);
                header('location: ../index.php');
                exit();
             }
@@ -41,10 +47,10 @@ if (isset($_POST['submit'])) {
       }
 
    }
-
    if ($title != '') {
-      mysqli_query($connect, "INSERT INTO article(title, category_id, user_id, content) 
-         VALUES('$title', '$category', '$id'," . " '" . $content . "')");
+      $sql = "UPDATE article SET title='$title', category_id='$category', content='" .$content.
+         "' WHERE article_id='$a_id'";
+      mysqli_query($connect, $sql);
       header('location: ../index.php');
    }
 }

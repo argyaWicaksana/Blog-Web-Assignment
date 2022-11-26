@@ -10,6 +10,7 @@ if (isset($_SESSION['username']) == false) {
 
 $username = $_SESSION['username'];
 $role = $_SESSION['role'];
+$id = $_SESSION['user_id'];
 
 ?>
 <!DOCTYPE html>
@@ -62,9 +63,9 @@ $role = $_SESSION['role'];
                         if ($role == 1) {
                         ?>
                             <li>
-                                <a href="<?= baseURL . 'dashboard/user/list.php' ?>" class="nav-link text-white <?= str_contains($_SERVER['SCRIPT_NAME'], 'TugasBesar/dashboard/article') ? 'active' : '' ?>">
+                                <a href="<?= baseURL . 'dashboard/users/list.php' ?>" class="nav-link text-white <?= str_contains($_SERVER['SCRIPT_NAME'], 'TugasBesar/dashboard/users') ? 'active' : '' ?>">
                                     <i data-feather="users" class="me-3"></i>
-                                    User
+                                    Users
                                 </a>
                             </li>
                         <?php
