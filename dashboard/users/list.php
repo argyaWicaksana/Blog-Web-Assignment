@@ -13,8 +13,7 @@ $users = mysqli_query($connect, $query);
 <table class="table table-striped mb-5">
     <thead>
         <tr>
-            <th scope="col">No</th>
-            <th scope="col">id</th>
+            <th scope="col">Id</th>
             <th scope="col">username</th>
             <th scope="col">email</th>
         </tr>
@@ -34,7 +33,7 @@ $users = mysqli_query($connect, $query);
                         <a href="view.php?u_id=<?= $user['id'] ?>" class="badge bg-info">
                             <i data-feather="eye"></i>
                         </a>
-                        <a href="deleteUser.php?u_id=<?= $user['id'] ?>" class="badge bg-danger">
+                        <a href="../process/deleteUser.php?u_id=<?= $user['id'] ?>" class="badge bg-danger">
                             <i data-feather="trash-2"></i>
                         </a>
                     </td>
