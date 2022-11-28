@@ -48,13 +48,13 @@ $id = $_SESSION['user_id'];
                     <hr>
                     <ul class="nav nav-pills flex-column mb-auto">
                         <li>
-                            <a href="<?= baseURL . 'dashboard' ?>" class="nav-link text-white <?= str_contains($_SERVER['SCRIPT_NAME'], 'TugasBesar/dashboard/index.php') ? 'active' : '' ?>">
+                            <a href="<?= baseURL . 'dashboard' ?>" class="nav-link text-white <?= str_contains($_SERVER['SCRIPT_NAME'], 'dashboard/index.php') ? 'active' : '' ?>">
                                 <i data-feather="home" class="me-3"></i>
                                 Dashboard
                             </a>
                         </li>
                         <li>
-                            <a href="<?= baseURL . 'dashboard/article/list.php' ?>" class="nav-link text-white <?= str_contains($_SERVER['SCRIPT_NAME'], 'TugasBesar/dashboard/article') ? 'active' : '' ?>">
+                            <a href="<?= baseURL . 'dashboard/article/list.php' ?>" class="nav-link text-white <?= str_contains($_SERVER['SCRIPT_NAME'], 'dashboard/article') ? 'active' : '' ?>">
                                 <i data-feather="file-text" class="me-3"></i>
                                 My Article
                             </a>
@@ -63,7 +63,7 @@ $id = $_SESSION['user_id'];
                         if ($role == 1) {
                         ?>
                             <li>
-                                <a href="<?= baseURL . 'dashboard/users/list.php' ?>" class="nav-link text-white <?= str_contains($_SERVER['SCRIPT_NAME'], 'TugasBesar/dashboard/users') ? 'active' : '' ?>">
+                                <a href="<?= baseURL . 'dashboard/users/list.php' ?>" class="nav-link text-white <?= str_contains($_SERVER['SCRIPT_NAME'], 'dashboard/users') ? 'active' : '' ?>">
                                     <i data-feather="users" class="me-3"></i>
                                     Users
                                 </a>
