@@ -40,8 +40,8 @@ $id = $_SESSION['user_id'];
     <!-- sidebar -->
     <div class="d-flex">
         <div style="min-height: 100vh;">
-            <div class="collapse collapse-horizontal h-100 show" id="collapseWidthExample">
-                <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark h-100" style="width: 280px;">
+            <div class="collapse collapse-horizontal show sticky-top" id="collapseWidthExample" style="height: 100vh;">
+                <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px; height:100vh;">
                     <a href="<?= baseURL ?>" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                         <span class="fs-4">Blog <span class="text-info">Web</span></span>
                     </a>
@@ -91,7 +91,7 @@ $id = $_SESSION['user_id'];
             </div>
         </div>
         <main class="w-100">
-            <nav class="navbar navbar-dark bg-dark ms-auto">
+            <nav class="navbar navbar-dark bg-dark ms-auto sticky-top">
                 <div class="container-fluid">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-controls="collapseWidthExample" aria-expanded="true">
                         <span class="navbar-toggler-icon"></span>

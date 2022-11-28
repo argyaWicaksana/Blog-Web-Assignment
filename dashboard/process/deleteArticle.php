@@ -20,11 +20,11 @@ if (isset($_GET['true'])) {
 //delete article
 $sql = "DELETE FROM article WHERE article_id=$a_id";
 if (mysqli_query($connect, $sql)) {
-    if ($role) {
+    if (isset($role)) {
         echo "
         <script>
             window.alert('Article deleted successfully!')
-            window.location.href = '../users/list.php'
+            window.location.href = '../article/list.php'
         </script>
     ";
     } else {
