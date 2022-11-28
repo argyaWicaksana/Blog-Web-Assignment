@@ -39,7 +39,6 @@ if (isset($_POST['submit'])) {
             }
          }
       }
-
    }
 
    if ($title != '') {
