@@ -7,25 +7,35 @@ $query = "SELECT title, img, user_id, content, `timestamp` FROM article WHERE ar
 $article = mysqli_query($connect, $query);
 $article = $article->fetch_assoc(); //return nilai dalam bentuk array associative
 
-//check is this user's article
-if ($id != $article['user_id']) {
-    header('Location: ' . baseURL . 'dashboard');
+// Checking role for viewing
+if ($role != 1) {
+    // Throw if this isn't the user's article
+    if ($id != $article['user_id']) {
+        header('Location: ' . baseURL . 'dashboard');
+    }
+} else {
+    if (isset($_GET['userpost'])) {
+        // Getting author's username 
+        $userpost = $_GET['userpost'];
+        echo "<strong>Showing article by $userpost </strong>";
+    }
 }
+
 ?>
 
-    <div class="col-lg-9">
-        <h1><?= $article['title'] ?></h1>
-        <hr>
+<div class="col-lg-9">
+    <h1><?= $article['title'] ?></h1>
+    <hr>
 
-        <?php if (isset($article['img'])) { ?>
-            <img class="card-img-top" src="<?= $article['img'] ?>" alt="image">
-        <?php
-        }?>
+    <?php if (isset($article['img'])) { ?>
+        <img class="card-img-top" src="<?= $article['img'] ?>" alt="image">
+    <?php
+    } ?>
 
-        <article class="my-3">
-            <?= $article['content'] ?>
-        </article>
-    </div>
+    <article class="my-3">
+        <?= $article['content'] ?>
+    </article>
+</div>
 </article>
 </main>
 </div>

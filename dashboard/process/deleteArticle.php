@@ -13,15 +13,28 @@ if ($file['img'] != '') {
     unlink('../../img/article/' . $file_name);
 }
 
+if (isset($_GET['true'])) {
+    $role = $_GET['true'];
+}
+
 //delete article
 $sql = "DELETE FROM article WHERE article_id=$a_id";
 if (mysqli_query($connect, $sql)) {
-    echo "
+    if ($role) {
+        echo "
+        <script>
+            window.alert('Article deleted successfully!')
+            window.location.href = '../users/list.php'
+        </script>
+    ";
+    } else {
+        echo "
         <script>
             window.alert('Article deleted successfully!')
             window.location.href = '../article/list.php'
         </script>
     ";
+    }
 } else {
     echo "
         <script>
