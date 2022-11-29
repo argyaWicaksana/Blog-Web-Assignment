@@ -52,7 +52,7 @@ if ($role == 1) {
     </article>
     </main>
     </div>
-<?
+<?php
 } else {
 ?>
     <h3>Oopss.. Looks like something went wrong</h3>
