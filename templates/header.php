@@ -33,7 +33,7 @@ if (isset($_SESSION['username'])) {
             </button>
             <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
@@ -58,8 +58,8 @@ if (isset($_SESSION['username'])) {
                         ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="login.php" name="login">
-                                    Login
                                     <i data-feather="log-in"></i>
+                                    <span class="d-lg-none">Login</span>
                                 </a>
                             </li>
                         <?php
@@ -68,11 +68,13 @@ if (isset($_SESSION['username'])) {
                             <li class="nav-item">
                                 <a class="nav-link" href="dashboard/index.php" name="dashboard">
                                     <i data-feather="user"></i>
+                                    <span class="d-lg-none">Dashboard</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="process/logout.php" name="logout">
                                     <i data-feather="log-out"></i>
+                                    <span class="d-lg-none">Log-out</span>
                                 </a>
                             </li>
                         <?php
