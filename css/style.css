@@ -2,11 +2,25 @@
 
 * {
     font-family: 'Quicksand', sans-serif;
+    /* box-sizing: border-box; */
 }
 
 .feather {
     width: 16px;
     height: 16px;
+}
+
+.card-img-top {
+    margin: auto;
+    max-width: 400px;
+}
+
+main {
+    min-height: calc(100vh - 73px - 56px - 56px);
+}
+
+footer hr {
+    width: 500px;
 }
 
 /* .article_image {
@@ -19,17 +33,4 @@
 
 main {
     padding-bottom: 50px;
-} */
-
-.card-img-top {
-    margin: auto;
-    max-width: 400px;
-}
-
-/* footer {
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    right: 0;
-    left: 0;
 } */

@@ -11,7 +11,7 @@ function randomImage()
 ?>
 
 <main class="container mt-4">
-    <h1 class="mb-4 text-center">All Post</h1>
+    <h1 class="mb-4 text-center">All Category</h1>
     <div class="row">
         <?php
         if (mysqli_num_rows($categories) > 0) {
