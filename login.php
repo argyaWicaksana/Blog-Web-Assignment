@@ -4,6 +4,27 @@ if (isset($_SESSION['username'])) {
     header("location: dashboard/index.php");
 }
 ?>
+<?php
+if (isset($_SESSION['isRegistered'])) { ?>
+    <?php
+    if($_SESSION['isRegistered'] == true){
+    ?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    Registered Successfully
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <?php
+    } else {
+    ?>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        Oopss.. Looks like something went wrong
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<?php
+    }
+    unset($_SESSION['isRegistered']);
+}
+?>
 <main class="container mt-5 col-lg-4 border rounded p-5">
     <h1 class="text-center mb-4">Login</h1>
     <form action="process/login.php" method="post">
