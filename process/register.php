@@ -14,7 +14,10 @@ if (isset($_POST['register'])) {
     VALUES ('$username','$email', '$password')";
     $result = mysqli_query($connect, $query);
     if ($result) {
-        include "../templates/header.php"
+        include "../templates/header.php";
+        // Auto redirect to login page after 5 seconds
+        header("Refresh:5; url=../login.php");
+
 ?>
         <!-- // Menampilkan halaman success -->
         <main class="container mt-5 col-lg-4 border rounded p-5">
