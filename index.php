@@ -1,12 +1,36 @@
 <?php include 'templates/header.php';
-$sql = "SELECT article_id, title, content, img, `timestamp`, username AS author, name AS category FROM article AS a
+
+if (isset($_GET['c_id'])) {
+    $c_id = $_GET['c_id'];
+    $sql = "SELECT c.name as kategori, article_id, title, content, img, `timestamp`, username AS author, name AS category FROM article AS a
 JOIN user AS u ON(a.user_id = u.id)
-JOIN category AS c ON(a.category_id = c.id) ORDER BY `timestamp` DESC";
-$articles = mysqli_query($connect, $sql);
+JOIN category AS c ON(a.category_id = c.id) WHERE a.category_id = $c_id ORDER BY `timestamp` DESC";
+    $articles = mysqli_query($connect, $sql);
+} else {
+    $sql = "SELECT article_id, title, content, img, `timestamp`, username AS author, name AS category FROM article AS a
+    JOIN user AS u ON(a.user_id = u.id)
+    JOIN category AS c ON(a.category_id = c.id) ORDER BY `timestamp` DESC";
+    $articles = mysqli_query($connect, $sql);
+}
+
+
 ?>
 
 <main class="container mt-4">
-    <h1 class="mb-4 text-center">All Post</h1>
+    <?php
+    if (isset($_GET['c_name'])) {
+        $c_name = $_GET['c_name'];
+    ?>
+        <h1 class="mb-4 text-center">Showing <?php echo "$c_name" ?></h1>
+    <?php
+    } else {
+    ?>
+        <h1 class="mb-4 text-center">All Post</h1>
+    <?php
+    }
+    ?>
+
+
     <div class="row">
         <?php
         if (mysqli_num_rows($articles) > 0) {
@@ -37,8 +61,12 @@ $articles = mysqli_query($connect, $sql);
                         </div>
                     </div>
                 </div>
-        <?php
+            <?php
             }
+        } else {
+            ?>
+            <p class="text-center">No Article Found</p>
+        <?php
         }
         ?>
     </div>

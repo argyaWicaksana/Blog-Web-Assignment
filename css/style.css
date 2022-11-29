@@ -13,12 +13,23 @@
     max-height: 400px;
     overflow: hidden;
 } */
+/* body {
+    position: relative;
+}
+
+main {
+    padding-bottom: 50px;
+} */
 
 .card-img-top {
     margin: auto;
-    width: 400px;
+    max-width: 400px;
 }
 
-/* .card-title{
-    font-size: ;
+/* footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    right: 0;
+    left: 0;
 } */
