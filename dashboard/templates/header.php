@@ -63,6 +63,12 @@ $id = $_SESSION['user_id'];
                         if ($role == 1) {
                         ?>
                             <li>
+                                <a href="<?= baseURL . 'dashboard/category/list.php' ?>" class="nav-link text-white <?= str_contains($_SERVER['SCRIPT_NAME'], 'dashboard/category') ? 'active' : '' ?>">
+                                    <i data-feather="folder" class="me-3"></i>
+                                    Category
+                                </a>
+                            </li>
+                            <li>
                                 <a href="<?= baseURL . 'dashboard/users/list.php' ?>" class="nav-link text-white <?= str_contains($_SERVER['SCRIPT_NAME'], 'dashboard/users') ? 'active' : '' ?>">
                                     <i data-feather="users" class="me-3"></i>
                                     Users
@@ -76,7 +82,8 @@ $id = $_SESSION['user_id'];
                     <hr>
                     <div class="dropdown" id="profileimg">
                         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://github.com/mdo.png" alt="" class="rounded-circle me-2" width="32" height="32">
+                            <i data-feather="user-check" class="me-2"></i>
+                            <?php echo $username ?>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                             <li><a class="dropdown-item" href="<?= baseURL ?>dashboard/profile">Profile</a></li>
@@ -96,10 +103,10 @@ $id = $_SESSION['user_id'];
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-controls="collapseWidthExample" aria-expanded="true">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="dropdown d-sm-none">
+                    <div class="dropdown d-lg-none">
                         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://github.com/mdo.png" alt="" class="rounded-circle me-2" width="32" height="32">
-                            <strong>mdo</strong>
+                            <i data-feather="user-check" class="me-2"></i>
+                            <?php echo $username ?>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                             <li><a class="dropdown-item" href="<?= baseURL ?>dashboard/profile">Profile</a></li>

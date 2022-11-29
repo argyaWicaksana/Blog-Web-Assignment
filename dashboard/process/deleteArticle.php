@@ -2,6 +2,8 @@
 include '../../connect.php';
 define('baseURL', explode('dashboard', $_SERVER['REQUEST_URI'])[0]);
 $a_id = $_GET['a_id'];
+session_start();
+$userid = $_SESSION['id'];
 
 // delete old image
 $sql = "SELECT img FROM article WHERE article_id=$a_id";

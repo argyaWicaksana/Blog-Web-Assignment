@@ -16,7 +16,7 @@ if (isset($_POST['register'])) {
     if ($result) {
         include "../templates/header.php";
         // Auto redirect to login page after 5 seconds
-        header("Refresh:5; url=../login.php");
+        // header("Refresh:5; url=../login.php");
 
 ?>
         <!-- // Menampilkan halaman success -->
