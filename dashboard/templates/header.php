@@ -103,7 +103,7 @@ $id = $_SESSION['user_id'];
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-controls="collapseWidthExample" aria-expanded="true">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="dropdown d-lg-none">
+                    <div class="dropdown d-md-none">
                         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                             <i data-feather="user-check" class="me-2"></i>
                             <?php echo $username ?>
