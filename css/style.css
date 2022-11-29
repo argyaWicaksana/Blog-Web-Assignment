@@ -1,14 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600&display=swap');
 
-*{
+* {
     font-family: 'Quicksand', sans-serif;
 }
+
 .feather {
     width: 16px;
     height: 16px;
 }
 
-.article_image{
+/* .article_image {
     max-height: 400px;
     overflow: hidden;
+} */
+
+.card-img-top {
+    margin: auto;
+    width: 400px;
 }
+
+/* .card-title{
+    font-size: ;
+} */
