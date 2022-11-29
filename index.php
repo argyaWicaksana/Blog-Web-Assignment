@@ -19,11 +19,11 @@ $articles = mysqli_query($connect, $sql);
                 <?php
                     if($article['img'] != ''){
                 ?>
-                <img src="<?= $article['img'] ?>" class="card-img-top">
+                <img src="<?= $article['img'] ?>" class="self-align-center">
                 <?php
                     } else{
                 ?>
-                <img src="img/nopicture.jpg" class="card-img-top">
+                <img src="img/nopicture.jpg" style="max-height: 170px;" class="align-self-center">
                 <?php
                     }
                 ?>
