@@ -3,17 +3,26 @@
 if (isset($_GET['c_id'])) {
     $c_id = $_GET['c_id'];
     $sql = "SELECT c.name as kategori, article_id, title, content, img, `timestamp`, username AS author, name AS category FROM article AS a
-JOIN user AS u ON(a.user_id = u.id)
-JOIN category AS c ON(a.category_id = c.id) WHERE a.category_id = $c_id ORDER BY `timestamp` DESC";
-    $articles = mysqli_query($connect, $sql);
+    JOIN user AS u ON(a.user_id = u.id)
+    JOIN category AS c ON(a.category_id = c.id) WHERE a.category_id = $c_id";
+
+    if(isset($_GET['s'])){
+        $search = $_GET['s'];
+        $sql .= " AND (content LIKE '%$search%' OR title LIKE '%$search%')";
+    }
+    $sql .= " ORDER BY `timestamp` DESC";
+} else if (isset($_GET['s'])) {
+    $search = $_GET['s'];
+    $sql = "SELECT article_id, title, content, img, `timestamp`, username AS author, name AS category FROM article AS a
+    JOIN user AS u ON(a.user_id = u.id)
+    JOIN category AS c ON(a.category_id = c.id) WHERE content LIKE '%$search%' OR title LIKE '%$search%' ORDER BY `timestamp` DESC";
 } else {
     $sql = "SELECT article_id, title, content, img, `timestamp`, username AS author, name AS category FROM article AS a
     JOIN user AS u ON(a.user_id = u.id)
     JOIN category AS c ON(a.category_id = c.id) ORDER BY `timestamp` DESC";
-    $articles = mysqli_query($connect, $sql);
 }
 
-
+$articles = mysqli_query($connect, $sql);
 ?>
 
 <main class="container mt-4">
