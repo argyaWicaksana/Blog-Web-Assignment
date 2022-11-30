@@ -5,7 +5,7 @@ define('ROOT', dirname(__DIR__, 2));
 // Check or throw
 session_start();
 if (isset($_SESSION['username']) == false) {
-    header("location:../login.php");
+    header("location:../../login.php");
 }
 
 $username = $_SESSION['username'];
