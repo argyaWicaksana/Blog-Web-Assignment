@@ -4,11 +4,6 @@ include '../../connect.php';
 
 // Are you an admin?
 if ($role == 1) {
-
-    //get title and category
-    $query = "SELECT id, name FROM category";
-    $categories = mysqli_query($connect, $query);
-    // var_dump($query);
 ?>
 
     <h1>Category List</h1>
@@ -32,8 +27,28 @@ if ($role == 1) {
             </tr>
         </thead>
         <tbody>
-            <?php if (mysqli_num_rows($categories) > 0) {
-                $i = 1;
+            <?php
+            // Limiter Module
+            $batas = 5;
+            $halaman = isset($_GET['halaman']) ? (int)$_GET['halaman'] : 1;
+            $halaman_awal = ($halaman > 1) ? ($halaman * $batas) - $batas : 0;
+
+            // Page Number
+            $previous = $halaman - 1;
+            $next = $halaman + 1;
+
+            // Get actual rows of data
+            $sql = "SELECT id, name FROM category";
+            $data = mysqli_query($connect, $sql);
+            $jumlah_data = mysqli_num_rows($data);
+            $total_halaman = ceil($jumlah_data / $batas);
+
+            // limiting data
+            $query = "$sql limit $halaman_awal, $batas";
+            $categories = mysqli_query($connect, $query);
+
+            if (mysqli_num_rows($categories) > 0) {
+                $i = $halaman_awal + 1;
                 foreach ($categories as $category) {
             ?>
                     <tr>
@@ -60,6 +75,29 @@ if ($role == 1) {
         </tbody>
     </table>
     <a class="btn btn-success" href="create.php">Create New Category</a>
+    <!-- Pagination Module -->
+    <nav>
+        <ul class="pagination justify-content-center">
+            <li class="page-item">
+                <a class="page-link" <?php if ($halaman > 1) {
+                                            echo "href='?halaman=$previous'";
+                                        } ?>>Previous</a>
+            </li>
+            <?php
+            for ($x = 1; $x <= $total_halaman; $x++) {
+            ?>
+                <li class="page-item"><a class="page-link" href="?halaman=<?= $x ?>"><?= $x; ?></a></li>
+            <?php
+                // var_dump($total_halaman);
+            }
+            ?>
+            <li class="page-item">
+                <a class="page-link" <?php if ($halaman < $total_halaman) {
+                                            echo "href='?halaman=$next'";
+                                        } ?>>Next</a>
+            </li>
+        </ul>
+    </nav>
     </article>
     </main>
     </div>
