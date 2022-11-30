@@ -32,6 +32,12 @@ $id = $_SESSION['user_id'];
         trix-toolbar [data-trix-button-group="file-tools"] {
             display: none;
         }
+
+        trix-editor {
+            height: 450px !important;
+            max-height: 450px !important;
+            overflow-y: auto !important;
+        }
     </style>
     <link rel="stylesheet" href="<?= baseURL ?>css/style.css?v=<?= time() ?>">
 </head>
