@@ -48,8 +48,16 @@ if (isset($_SESSION['username'])) {
                     </ul>
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item me-lg-3">
-                            <form class="d-flex" role="search">
-                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <form class="d-flex" role="search" action="index.php" method="GET">
+                                <?php
+                                    if(isset($_GET['c_id']) && isset($_GET['c_name'])){
+                                ?>
+                                <input type="hidden" name="c_id" value="<?= $_GET['c_id'] ?>">
+                                <input type="hidden" name="c_name" value="<?= $_GET['c_name'] ?>">
+                                <?php
+                                    }
+                                ?>
+                                <input class="form-control me-2" type="search" placeholder="Search" name="s" aria-label="Search">
                                 <button class="btn btn-outline-light" type="submit">Search</button>
                             </form>
                         </li>
