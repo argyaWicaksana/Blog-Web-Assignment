@@ -10,20 +10,9 @@ if ($role == 1) {
 
         // Query
         $sql = "INSERT INTO category (name) VALUES ('$name')";
-        if (mysqli_query($connect, $sql)) {
-            echo "
-            <script>
-                window.alert('Category has been added !')
-                window.location.href = '../category/list.php';
-            </script>
-        ";
-        } else {
-            echo "
-            <script>
-                window.alert('Something went wrong...')
-                window.location.href = '../category/list.php';
-            </script>
-        ";
-        }
+        if (mysqli_query($connect, $sql)) $_SESSION['flash_message'] = ['Category has been added!', 'success'];
+        else $_SESSION['flash_message'] = ['Cant add category!', 'danger'];
+
+        header('Location: ../category/list.php');
     }
 }

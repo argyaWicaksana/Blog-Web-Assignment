@@ -6,7 +6,7 @@ if (isset($_GET['c_id'])) {
     JOIN user AS u ON(a.user_id = u.id)
     JOIN category AS c ON(a.category_id = c.id) WHERE a.category_id = $c_id";
 
-    if(isset($_GET['s'])){
+    if (isset($_GET['s'])) {
         $search = $_GET['s'];
         $sql .= " AND (content LIKE '%$search%' OR title LIKE '%$search%')";
     }
@@ -45,7 +45,7 @@ $articles = mysqli_query($connect, $sql);
         if (mysqli_num_rows($articles) > 0) {
             foreach ($articles as $article) {
                 $excerpt = array_slice(explode(" ", $article['content']), 0, 15);
-                $excerpt = strip_tags(implode(' ', $excerpt)) . '...';
+                $excerpt = strip_tags(implode(' ', $excerpt), '<ol><ul><li>') . '...';
         ?>
                 <div class="col-md-4 mb-4">
                     <div class="card">

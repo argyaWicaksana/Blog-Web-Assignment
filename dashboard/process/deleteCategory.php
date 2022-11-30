@@ -13,19 +13,7 @@ if ($role == 1) {
 
     //delete category
     $sql = "DELETE FROM category WHERE id=$c_id";
-    if (mysqli_query($connect, $sql)) {
-        echo "
-        <script>
-            window.alert('Category deleted successfully!')
-            window.location.href = '../category/list.php'
-        </script>
-    ";
-    } else {
-        echo "
-        <script>
-            window.alert('Cant delete category!')
-            window.location.href = '../category/list.php'
-        </script>
-    ";
-    }
+    if ($c_id!=7 && mysqli_query($connect, $sql)) $_SESSION['flash_message'] = ['Category deleted successfully!', 'success'];
+    else $_SESSION['flash_message'] = ['Cant delete category', 'danger'];
+    header('Location: ../category/list.php');
 }

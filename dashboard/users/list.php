@@ -8,11 +8,19 @@ if ($role == 1) {
     //get title and category
     $query = "SELECT id, username, email FROM user WHERE isAdmin ='0'";
     $users = mysqli_query($connect, $query);
-    // var_dump($query);
 ?>
 
     <h1>User List</h1>
     <hr>
+    <?php
+    if (isset($_SESSION['flash_message'])) { ?>
+        <div class="alert alert-<?= $_SESSION['flash_message'][1] ?> alert-dismissible fade show" role="alert">
+            <?= $_SESSION['flash_message'][0] ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php
+        unset($_SESSION['flash_message']);
+    } ?>
     <table class="table table-striped mb-5">
         <thead>
             <tr>

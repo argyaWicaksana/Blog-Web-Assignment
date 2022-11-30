@@ -23,7 +23,6 @@ $article = $article->fetch_assoc();
         <div class="mb-3">
             <label for="category" class="form-label">Category</label>
             <select name="category" class="form-select" id="category">
-                <!-- <option selected>-- Select Category --</option> -->
                 <?php
 
                 while ($category = mysqli_fetch_array(

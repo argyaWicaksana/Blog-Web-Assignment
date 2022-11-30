@@ -12,7 +12,7 @@ if (isset($_POST['submit'])) {
    $content = $_POST['content'];
    $id = $_SESSION['user_id'];
 
-   if ($_FILES['file']['name'] != '') { // is image file avaible?
+   if ($_FILES['file']['name'] != '' && $title != '') { // is image file avaible?
       // Image Cek
       $image = $_FILES['file']['name'];
       $target_dir = "../../img/article/";
@@ -31,19 +31,20 @@ if (isset($_POST['submit'])) {
             // Submit data
             $image = baseURL . 'img/article/' . $image;
 
-            if ($title != '') {
-               mysqli_query($connect, "INSERT INTO article(title, img, category_id, user_id, content) 
+            mysqli_query($connect, "INSERT INTO article(title, img, category_id, user_id, content) 
                   VALUES('$title', '$image', '$category', '$id'," . " '" . $content . "')");
-               header('location: ../index.php');
-               exit();
-            }
-         }
-      }
-   }
 
-   if ($title != '') {
+            $_SESSION['flash_message'] = ['Successfully create article!', 'success'];
+
+         } else $_SESSION['flash_message'] = ['Cant upload file!', 'danger'];
+      } else $_SESSION['flash_message'] = ['Can only upload image file!', 'danger'];
+      
+   } else if ($title != '') {
       mysqli_query($connect, "INSERT INTO article(title, category_id, user_id, content) 
          VALUES('$title', '$category', '$id'," . " '" . $content . "')");
-      header('location: ../index.php');
+
+      $_SESSION['flash_message'] = ['Successfully create article!', 'success'];
    }
+
+   header('location: ../article/list.php');
 }

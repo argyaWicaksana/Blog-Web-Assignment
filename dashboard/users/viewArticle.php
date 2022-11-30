@@ -18,6 +18,15 @@ $articles = mysqli_query($connect, $query);
     <small>Showing Article for user : <?php echo "$username" ?></small>
 </strong>
 <hr>
+<?php
+if (isset($_SESSION['flash_message'])) { ?>
+    <div class="alert alert-<?= $_SESSION['flash_message'][1] ?> alert-dismissible fade show" role="alert">
+        <?= $_SESSION['flash_message'][0] ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<?php
+    unset($_SESSION['flash_message']);
+} ?>
 <table class="table table-striped mb-5">
     <thead>
         <tr>

@@ -10,54 +10,30 @@ if (isset($_GET['true'])) {
 }
 
 // Get userid and article id
-$sql = "SELECT user_id from article WHERE article_id=$a_id";
+$sql = "SELECT a.user_id, u.username from article a JOIN user u ON(a.user_id=u.id) WHERE article_id=$a_id";
 $call = (mysqli_query($connect, $sql));
 $user = mysqli_fetch_assoc($call);
 $usid = $user['user_id'];
+$username = $user['username'];
 
 // Checking Permission
-if (isset($role) || ($usid == $userid)) {
-    if ($role == 1 || ($usid == $userid)) {
-        // delete old image
-        $sql = "SELECT img FROM article WHERE article_id=$a_id";
-        $file = mysqli_query($connect, $sql);
-        $file = $file->fetch_assoc();
+if ((isset($role) && $role == 1) || ($usid == $userid)) {
+    // delete old image
+    $sql = "SELECT img FROM article WHERE article_id=$a_id";
+    $file = mysqli_query($connect, $sql);
+    $file = $file->fetch_assoc();
 
-        if ($file['img'] != '') {
-            $file_name = basename($file['img'], '?' . $_SERVER['QUERY_STRING']);
-            unlink('../../img/article/' . $file_name);
-        }
-
-        //delete article
-        $sql = "DELETE FROM article WHERE article_id=$a_id";
-        if (mysqli_query($connect, $sql)) {
-            echo "
-            <script>
-                window.alert('Article deleted successfully!')
-                window.location.href = '../article/list.php'
-            </script>
-        ";
-        } else {
-            echo "
-            <script>
-                window.alert('Cant delete article!')
-                window.location.href = '../article/list.php'
-            </script>
-        ";
-        }
-    } else {
-        echo "
-        <script>
-            window.alert('Cant delete article!')
-            window.location.href = '../article/list.php'
-        </script>
-    ";
+    if ($file['img'] != '') {
+        $file_name = basename($file['img'], '?' . $_SERVER['QUERY_STRING']);
+        unlink('../../img/article/' . $file_name);
     }
-} else {
-    echo "
-        <script>
-            window.alert('Cant delete article!')
-            window.location.href = '../article/list.php'
-        </script>
-    ";
-}
+
+    //delete article
+    $sql = "DELETE FROM article WHERE article_id=$a_id";
+    if (mysqli_query($connect, $sql)) $_SESSION['flash_message'] = ['Article deleted succesfully', 'success'];
+    else $_SESSION['flash_message'] = ['Cant delete article!', 'danger'];
+
+} else $_SESSION['flase_message'] = ['You dont have permission to delete this article!', 'danger'];
+
+if ($role == 1) header("Location: ../users/viewArticle.php?u_id=$usid&username=$username");
+else header("Location: ../article/list.php");

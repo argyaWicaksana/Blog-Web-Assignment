@@ -10,13 +10,13 @@ if (isset($_POST['submit'])) {
    $id = $_SESSION['user_id'];
    $a_id = $_POST['a_id'];
 
-   if ($_FILES['file']['name'] != '') { // is image file avaible?
+   if ($_FILES['file']['name'] != '' && $title != '') { // is image file avaible?
       //delete old image
       $sql = "SELECT img FROM article WHERE article_id=$a_id";
       $file = mysqli_query($connect, $sql);
       $file = $file->fetch_assoc();
       $file_name = basename($file['img'], '?' . $_SERVER['QUERY_STRING']);
-      unlink('../../img/article/'.$file_name);
+      unlink('../../img/article/' . $file_name);
 
       // Image Cek
       $image = $_FILES['file']['name'];
@@ -36,21 +36,19 @@ if (isset($_POST['submit'])) {
             // Submit data
             $image = baseURL . 'img/article/' . $image;
 
-            if ($title != '') {
-               $sql = "UPDATE article SET title='$title', img='$image', category_id='$category', content='" .$content.
-                  "' WHERE article_id='$a_id'";
-               mysqli_query($connect, $sql);
-               header('location: ../index.php');
-               exit();
-            }
-         }
-      }
+            $sql = "UPDATE article SET title='$title', img='$image', category_id='$category', content='" . $content .
+               "' WHERE article_id='$a_id'";
+            mysqli_query($connect, $sql);
+            $_SESSION['flash_message'] = ['Successfully updated article!', 'success'];
 
-   }
-   if ($title != '') {
-      $sql = "UPDATE article SET title='$title', category_id='$category', content='" .$content.
+         } else $_SESSION['flash_message'] = ['Cant upload file!', 'danger'];
+      } else $_SESSION['flash_message'] = ['Can only upload image file!', 'danger'];
+
+   } else if ($title != '') {
+      $sql = "UPDATE article SET title='$title', category_id='$category', content='" . $content .
          "' WHERE article_id='$a_id'";
       mysqli_query($connect, $sql);
-      header('location: ../index.php');
+      $_SESSION['flash_message'] = ['Successfully updated article!', 'success'];
    }
+   header("Location: ../article/list.php");
 }

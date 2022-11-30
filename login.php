@@ -5,24 +5,14 @@ if (isset($_SESSION['username'])) {
 }
 ?>
 <?php
-if (isset($_SESSION['isRegistered'])) { ?>
-    <?php
-    if ($_SESSION['isRegistered'] == true) {
-    ?>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Registered Successfully
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    <?php
-    } else {
-    ?>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            Oopss.. Looks like something went wrong
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+if (isset($_SESSION['flash_message'])) { ?>
+    <div class="alert alert-<?= $_SESSION['flash_message'][1] ?> alert-dismissible fade show" role="alert">
+        <?= $_SESSION['flash_message'][0] ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 <?php
-    }
-    unset($_SESSION['isRegistered']);
+    session_unset();
+    session_destroy();
 }
 ?>
 <main class="container mt-5 col-lg-4">

@@ -1,16 +1,9 @@
 <?php
-// // Memulai session
-// session_start();
-
-// // Jika ditemukan session, maka user akan otomatis dialihkan ke halaman admin.
-// if (isset($_SESSION['username'])) {
-//     header("location: ../dashboard/index.php");
-// }
+// Memulai session
+session_start();
 
 // Include koneksi database.
 require_once "../connect.php";
-
-// var_dump(isset($_POST['login']));
 
 // Jika tombol login ditekan, maka akan mengirimkan variabel yang berisi username dan password.
 if (isset($_POST['login'])) {
@@ -24,33 +17,20 @@ if (isset($_POST['login'])) {
     list($id, $username, $password, $role) = mysqli_fetch_array($sql);
 
     // Jika data ditemukan dalam database, maka akan melakukan validasi dengan password_verify.
-    if (mysqli_num_rows($sql) > 0) {
-        /*
-            Validasi login dengan password_verify
-            $userpass -----> diambil dari password yang diinputkan user lewat form login
-            $password -----> diambil dari password dalam database
-        */
-        if (password_verify($userpass, $password)) {
+    // $userpass -----> diambil dari password yang diinputkan user lewat form login
+    // $password -----> diambil dari password dalam database
+    if (mysqli_num_rows($sql) > 0 && password_verify($userpass, $password)) {
+        $_SESSION['username'] = $username;
+        $_SESSION['user_id'] = $id;
+        $_SESSION['role'] = $role;
 
-            // Buat session baru.
-            session_start();
-            $_SESSION['username'] = $username;
-            $_SESSION['user_id'] = $id;
-            $_SESSION['role'] = $role;
+        // Jika login berhasil, user akan diarahkan ke halaman admin.
+        header("location: ../dashboard/index.php");
+        die();
 
-            // Jika login berhasil, user akan diarahkan ke halaman admin.
-            header("location: ../dashboard/index.php");
-            die();
-        } else {
-            echo '<script language="javascript">
-                    window.alert("Looks like your password stuck. Please Try Again !");
-                    window.location.href="../login.php";
-                  </script>';
-        }
     } else {
-        echo '<script language="javascript">
-                window.alert("Something went wrong.. Please Try Again !");
-                window.location.href="../login.php";
-             </script>';
+        // memberikan flash message
+        $_SESSION['flash_message'] = ['Looks like your username / password wrong!', 'danger'];
+        header("Location: ../login.php");
     }
 }
