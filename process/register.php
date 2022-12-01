@@ -14,11 +14,15 @@ if (isset($_POST['register'])) {
 
     $query = "INSERT into `user` (id, username, email, password)
     VALUES ('$userid','$username','$email', '$password')";
-    $result = mysqli_query($connect, $query);
     session_start();
-    if ($result) $_SESSION['flash_message'] = ['Registered Successfully', 'success'];
-    else $_SESSION['flash_message'] = ['Oopss.. Looks like something went wrong', 'danger'];
+    try {
+        mysqli_query($connect, $query);
+        $_SESSION['flash_message'] = ['Registered Successfully', 'success'];
+    } catch (\Throwable $th) {
+        if (mysqli_errno($connect) == 1062) {
+            $_SESSION['flash_message'] = ['Email / Username already used!', 'danger'];
+        }else $_SESSION['flash_message'] = [mysqli_error($connect), 'danger'];
+    }
 
     header('location: ../login.php');
 }
-

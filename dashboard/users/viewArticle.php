@@ -46,7 +46,7 @@ if (isset($_SESSION['flash_message'])) { ?>
         JOIN category c ON(a.category_id = c.id) WHERE user_id =$u_id";
         $articles = mysqli_query($connect, $sql);
 
-        $jumlah_data = mysqli_num_rows($data);
+        $jumlah_data = mysqli_num_rows($articles);
         $total_halaman = ceil($jumlah_data / $batas);
 
         //limiting data

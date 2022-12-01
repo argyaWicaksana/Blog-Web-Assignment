@@ -112,14 +112,14 @@ $id = $_SESSION['user_id'];
                     <div class="dropdown d-md-none">
                         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                             <i data-feather="user-check" class="me-2"></i>
-                            <?php echo $username ?>
+                            <?= $username ?>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                             <li><a class="dropdown-item" href="<?= baseURL ?>dashboard/profile">Profile</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Sign out</a></li>
+                            <li><a class="dropdown-item" href="../process/logout.php">Sign out</a></li>
                         </ul>
                     </div>
                 </div>
