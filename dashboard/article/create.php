@@ -43,9 +43,9 @@
             <img class="img-fluid col-sm-9 mt-3 image-preview" src="" alt="">
         </div>
         <div class="mb-3">
-            <label for="text" class="form-label">Text</label>
+            <label for="text" class="form-label">Content</label>
             <input id="x" type="hidden" name="content">
-            <trix-editor input="x"></trix-editor>
+            <trix-editor input="x" style="overflow-y:auto" </trix-editor>
         </div>
         <div class="mb-3 d-md-flex justify-content-md-end">
             <button name="submit" type="submit" class="btn btn-success">Submit</button>
@@ -59,11 +59,11 @@
     document.addEventListener('trix-file-accept', (e) => e.preventDefault())
 
     $(document).ready(() => {
-        $('#img').change(()=> {
+        $('#img').change(() => {
             const file = $('#img').prop('files')[0]
             if (file) {
                 let reader = new FileReader()
-                reader.onload = (event)=> $('.image-preview').attr('src', event.target.result)
+                reader.onload = (event) => $('.image-preview').attr('src', event.target.result)
                 reader.readAsDataURL(file)
             }
         })
