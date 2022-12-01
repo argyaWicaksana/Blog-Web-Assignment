@@ -45,8 +45,11 @@ $article = $article->fetch_assoc();
             <img class="img-fluid col-sm-9 mt-3 image-preview" src="<?= isset($article['img']) ? $article['img'] : '' ?>" alt="">
         </div>
         <div class="mb-3">
-            <label for="text" class="form-label">Text</label>
+            <br>
+            <label for="text" class="form-label">Content</label>
+            <br>
             <input id="x" type="hidden" name="content" value="<?= $article['content'] ?>">
+            <small>Edit your content here</small>
             <trix-editor input="x"></trix-editor>
         </div>
         <div class="mb-3 d-md-flex justify-content-md-end">
@@ -61,11 +64,11 @@ $article = $article->fetch_assoc();
     document.addEventListener('trix-file-accept', (e) => e.preventDefault())
 
     $(document).ready(() => {
-        $('#img').change(()=> {
+        $('#img').change(() => {
             const file = $('#img').prop('files')[0]
             if (file) {
                 let reader = new FileReader()
-                reader.onload = (event)=> $('.image-preview').attr('src', event.target.result)
+                reader.onload = (event) => $('.image-preview').attr('src', event.target.result)
                 reader.readAsDataURL(file)
             }
         })

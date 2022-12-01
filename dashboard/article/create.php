@@ -45,7 +45,7 @@
         <div class="mb-3">
             <label for="text" class="form-label">Content</label>
             <input id="x" type="hidden" name="content">
-            <trix-editor input="x" style="overflow-y:auto" </trix-editor>
+            <trix-editor input="x"> </trix-editor>
         </div>
         <div class="mb-3 d-md-flex justify-content-md-end">
             <button name="submit" type="submit" class="btn btn-success">Submit</button>
