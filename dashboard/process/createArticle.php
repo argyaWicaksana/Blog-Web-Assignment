@@ -14,7 +14,7 @@ if (isset($_POST['submit'])) {
 
    if ($_FILES['file']['name'] != '' && $title != '') { // is image file avaible?
       // Image Cek
-      $image = $_FILES['file']['name'];
+      $image = "img" . rand(-2147483648, 2147483647) .".". pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
       $target_dir = "../../img/article/";
       $target_file = $target_dir . basename($_FILES["file"]["name"]);
 
