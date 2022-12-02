@@ -4,12 +4,15 @@ include 'quotes.php';
 ?>
 
 <div class="text-center">
-    <h1>Hello, <?= $username ?></h1>
+    <h1>Hello, <span class="admin active"><?= $username ?></span></h1>
     <hr>
     <!-- <p>Quotes to help yourself</p> -->
-    <h3>
-        <q><?= $quotes ?></q>
-    </h3>
+    <div class="container">
+        <h3>
+            <q><?= $quotes ?></q>
+        </h3>
+    </div>
+
 
 </div>
 
