@@ -31,14 +31,15 @@ footer hr {
     width: 500px;
 }
 
-/* .article_image {
-    max-height: 400px;
+.card_hover {
+    transition: 0.3s;
     overflow: hidden;
-} */
-/* body {
-    position: relative;
 }
 
-main {
-    padding-bottom: 50px;
-} */
+.bg_green {
+    background-color: rgb(189, 189, 189);
+}
+
+.card_hover:hover {
+    transform: translate(-2px, -2px);
+}
