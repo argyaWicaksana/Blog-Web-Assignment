@@ -1,8 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 * {
-    font-family: 'Quicksand', sans-serif;
-    /* box-sizing: border-box; */
+    font-family: 'Montserrat', sans-serif;
+}
+
+.admin {
+    background: #212529;
+    color: white;
+    border: solid 0px;
+    border-radius: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
 .feather {
