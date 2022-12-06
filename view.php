@@ -27,33 +27,62 @@ $article = $article->fetch_assoc();
             <h2>Comment</h2>
             <hr>
             <?php
-                if(isset($_SESSION['username'])){
+            if (isset($_SESSION['username'])) {
             ?>
-            <div class="card mb-5">
-                <form class="card-body" method="POST" action="process/comment.php">
-                    <input type="hidden" name="a_id" value="<?= $a_id ?>">
-                    <textarea class="form-control card mb-3" id="user-comment" rows="3" name="comment"></textarea>
-                    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
-                </form>
-            </div>
+                <div class="card mb-5">
+                    <form class="card-body" method="POST" action="process/comment.php">
+                        <input type="hidden" name="a_id" value="<?= $a_id ?>">
+                        <textarea class="form-control card mb-3" id="user-comment" rows="3" name="comment" placeholder="Insert comment here"></textarea>
+                        <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
             <?php
-                }
-            $sql = "SELECT u.username, c.comment FROM comment c
+            } else {
+            ?>
+                <div class="card mb-5">
+                    <div class="card-body text-outline-dark">
+                        <p>Login to comment</p>
+                        <a href="login.php" target="_blank" class="btn btn-primary">Login</a>
+                    </div>
+                </div>
+                <?php
+            }
+            $sql = "SELECT u.username, c.comment, c.user_id, c.id FROM comment c
                 JOIN user u ON(u.id = c.user_id)
                 WHERE article_id=$a_id ORDER BY `timestamp` DESC";
             $comments = mysqli_query($connect, $sql);
 
             if (mysqli_num_rows($comments) > 0) {
                 foreach ($comments as $comment) {
-            ?>
+                ?>
                     <div class="card mb-3">
-                        <div class="card-body">
+                        <form class="card-body" method="POST" action="process/delcomment.php">
+                            <input type="hidden" name="a_id" value="<?= $a_id ?>">
+                            <input type="hidden" name="c_id" value="<?= $comment['id'] ?>">
                             <h5><?= $comment['username'] ?></h5>
                             <?= $comment['comment'] ?>
-                        </div>
+                            <?php
+                            if (isset($_SESSION['username'])) {
+                                if (($id == $comment['user_id']) || $role == 1) {
+                            ?>
+                                    <div class="d-flex justify-content-end">
+                                        <button name="submit" type="submit" class="btn btn-danger">Delete </button>
+                                    </div>
+                            <?php
+                                }
+                            }
+                            ?>
+                        </form>
                     </div>
-            <?php
+                <?php
                 }
+            } else { ?>
+                <div class="card mb-5">
+                    <div class="card-body">
+                        <p>There are no comment yet</p>
+                    </div>
+                </div>
+            <?php
             }
             ?>
         </div>

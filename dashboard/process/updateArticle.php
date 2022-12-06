@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
       unlink('../../img/article/' . $file_name);
 
       // Image Cek
-      $image = "img" . rand(-2147483648, 2147483647) .".". pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+      $image = "img" . rand(-2147483648, 2147483647) . "." . pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
       $target_dir = "../../img/article/";
       $target_file = $target_dir . basename($_FILES["file"]["name"]);
 
@@ -40,12 +40,10 @@ if (isset($_POST['submit'])) {
                "' WHERE article_id='$a_id'";
             mysqli_query($connect, $sql);
             $_SESSION['flash_message'] = ['Successfully updated article!', 'success'];
-
          } else $_SESSION['flash_message'] = ['Cant upload file!', 'danger'];
       } else $_SESSION['flash_message'] = ['Can only upload image file!', 'danger'];
-
    } else if ($title != '') {
-      $sql = "UPDATE article SET title='$title', category_id='$category', content='" . $content .
+      $sql = "UPDATE article SET title='$title', category_id='$category', img='', content='" . $content .
          "' WHERE article_id='$a_id'";
       mysqli_query($connect, $sql);
       $_SESSION['flash_message'] = ['Successfully updated article!', 'success'];
