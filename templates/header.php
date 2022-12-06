@@ -7,6 +7,7 @@ if (isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
     $role = $_SESSION['role'];
     $cek = 1;
+    $id = $_SESSION['user_id'];
 }
 
 ?>
