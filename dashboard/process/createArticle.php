@@ -3,9 +3,6 @@ include '../../connect.php';
 define('baseURL', explode('dashboard', $_SERVER['REQUEST_URI'])[0]);
 session_start();
 
-// hooopeee it works. so sleepy
-// var_dump($_FILES['file']['name']);
-
 if (isset($_POST['submit'])) {
    $title = $_POST['title'];
    $category = $_POST['category'];
