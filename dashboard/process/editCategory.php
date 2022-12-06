@@ -14,5 +14,6 @@ if ($role == 1 && isset($_POST['submit'])) {
     if (mysqli_query($connect, $sql)) $_SESSION['flash_message'] = ['Category has been updated!', 'success'];
     else $_SESSION['flash_message'] = ['Cant update category!', 'danger'];
     
+    mysqli_close($connect);
     header('Location: ../category/list.php');
 }

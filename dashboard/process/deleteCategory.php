@@ -15,5 +15,6 @@ if ($role == 1) {
     $sql = "DELETE FROM category WHERE id=$c_id";
     if ($c_id!=7 && mysqli_query($connect, $sql)) $_SESSION['flash_message'] = ['Category deleted successfully!', 'success'];
     else $_SESSION['flash_message'] = ['Cant delete category', 'danger'];
+    mysqli_close($connect);
     header('Location: ../category/list.php');
 }

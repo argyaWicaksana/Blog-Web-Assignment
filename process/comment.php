@@ -16,5 +16,7 @@
         $stmt->bind_param("iis", $user_id, $a_id, $comment);
         $stmt->execute();
     }
+
+    mysqli_close($connect);
     header("Location: ../view.php?a_id=$a_id");
 ?>

@@ -22,11 +22,8 @@ if (isset($_POST['submit'])) {
         $sql = "UPDATE user SET username='$username', email='$email', password='$newpassword' WHERE id='$id'";
         mysqli_query($connect, $sql);
         $_SESSION['username'] = $username;
-        echo "
-            <script>
-                window.alert('Successfully update profile!')
-                window.location.href = '../index.php';
-            </script>
-        ";
+        $_SESSION['flash_message'] = ['Successfully update profile!', 'success'];
+        mysqli_close($connect);
+        header("Location: ../index.php");
     }
 }

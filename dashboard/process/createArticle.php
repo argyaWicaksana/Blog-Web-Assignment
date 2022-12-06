@@ -46,5 +46,6 @@ if (isset($_POST['submit'])) {
       $_SESSION['flash_message'] = ['Successfully create article!', 'success'];
    }
 
+   mysqli_close($connect);
    header('location: ../article/list.php');
 }

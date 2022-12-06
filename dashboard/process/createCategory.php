@@ -13,6 +13,7 @@ if ($role == 1) {
         if (mysqli_query($connect, $sql)) $_SESSION['flash_message'] = ['Category has been added!', 'success'];
         else $_SESSION['flash_message'] = ['Cant add category!', 'danger'];
 
+        mysqli_close($connect);
         header('Location: ../category/list.php');
     }
 }

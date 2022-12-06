@@ -25,12 +25,14 @@ if (isset($_POST['login'])) {
         $_SESSION['role'] = $role;
 
         // Jika login berhasil, user akan diarahkan ke halaman admin.
+        mysqli_close($connect);
         header("location: ../dashboard/index.php");
         die();
 
     } else {
         // memberikan flash message
         $_SESSION['flash_message'] = ['Looks like your username / password wrong!', 'danger'];
+        mysqli_close($connect);
         header("Location: ../login.php");
     }
 }

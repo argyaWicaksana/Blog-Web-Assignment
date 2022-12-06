@@ -24,5 +24,6 @@ if (isset($_POST['register'])) {
         }else $_SESSION['flash_message'] = [mysqli_error($connect), 'danger'];
     }
 
+    mysqli_close($connect);
     header('location: ../login.php');
 }

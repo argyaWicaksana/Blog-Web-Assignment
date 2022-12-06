@@ -16,4 +16,5 @@ if ($role == 1) {
 
 } else $_SESSION['flash_message'] = ['You dont have permisson to delete user!', 'danger'];
 
+mysqli_close($connect);
 header('Location: ../users/list.php');

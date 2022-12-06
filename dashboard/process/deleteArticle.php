@@ -35,5 +35,6 @@ if ((isset($role) && $role == 1) || ($usid == $userid)) {
 
 } else $_SESSION['flase_message'] = ['You dont have permission to delete this article!', 'danger'];
 
+mysqli_close($connect);
 if ($role == 1) header("Location: ../users/viewArticle.php?u_id=$usid&username=$username");
 else header("Location: ../article/list.php");
