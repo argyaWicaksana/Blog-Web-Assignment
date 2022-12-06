@@ -26,6 +26,9 @@ $article = $article->fetch_assoc();
         <div class="col-md-8">
             <h2>Comment</h2>
             <hr>
+            <?php
+                if(isset($_SESSION['username'])){
+            ?>
             <div class="card mb-5">
                 <form class="card-body" method="POST" action="process/comment.php">
                     <input type="hidden" name="a_id" value="<?= $a_id ?>">
@@ -34,20 +37,21 @@ $article = $article->fetch_assoc();
                 </form>
             </div>
             <?php
+                }
             $sql = "SELECT u.username, c.comment FROM comment c
-            JOIN user u ON(u.id = c.user_id)
-            WHERE article_id=$a_id";
+                JOIN user u ON(u.id = c.user_id)
+                WHERE article_id=$a_id ORDER BY `timestamp` DESC";
             $comments = mysqli_query($connect, $sql);
 
-            if(mysqli_num_rows($comments) > 0){
+            if (mysqli_num_rows($comments) > 0) {
                 foreach ($comments as $comment) {
             ?>
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5><?= $comment['username'] ?></h5>
-                    <?= $comment['comment'] ?>
-                </div>
-            </div>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5><?= $comment['username'] ?></h5>
+                            <?= $comment['comment'] ?>
+                        </div>
+                    </div>
             <?php
                 }
             }

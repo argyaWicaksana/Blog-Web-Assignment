@@ -50,5 +50,7 @@ if (isset($_POST['submit'])) {
       mysqli_query($connect, $sql);
       $_SESSION['flash_message'] = ['Successfully updated article!', 'success'];
    }
+
+   mysqli_close($connect);
    header("Location: ../article/list.php");
 }
