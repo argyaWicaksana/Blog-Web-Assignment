@@ -15,68 +15,71 @@ if (isset($_SESSION['flash_message'])) { ?>
 <?php
     unset($_SESSION['flash_message']);
 } ?>
-<table class="table table-striped mb-5">
-    <thead>
-        <tr>
-            <th scope="col">No</th>
-            <th scope="col">Title</th>
-            <th scope="col">Category</th>
-            <th scope="col">Action</th>
-        </tr>
-        <?php
-        ?>
-    </thead>
-    <tbody>
-        <?php
-        // Limitter module
-        $batas = 5;
-        $halaman = isset($_GET['halaman']) ? (int)$_GET['halaman'] : 1;
-        $halaman_awal = ($halaman > 1) ? ($halaman * $batas) - $batas : 0;
+<div class="table-responsive">
+    <table class="table table-striped mb-5">
+        <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Title</th>
+                <th scope="col">Category</th>
+                <th scope="col">Action</th>
+            </tr>
+            <?php
+            ?>
+        </thead>
+        <tbody>
+            <?php
+            // Limitter module
+            $batas = 5;
+            $halaman = isset($_GET['halaman']) ? (int)$_GET['halaman'] : 1;
+            $halaman_awal = ($halaman > 1) ? ($halaman * $batas) - $batas : 0;
 
-        // Page number
-        $previous = $halaman - 1;
-        $next = $halaman + 1;
+            // Page number
+            $previous = $halaman - 1;
+            $next = $halaman + 1;
 
-        // Get actual rows of data
-        $sql = "SELECT article_id, a.title, c.name AS category FROM article a
+            // Get actual rows of data
+            $sql = "SELECT article_id, a.title, c.name AS category FROM article a
         JOIN category c ON(a.category_id = c.id) WHERE user_id =$id";
-        $data = mysqli_query($connect, $sql);
-        $jumlah_data = mysqli_num_rows($data);
-        $total_halaman = ceil($jumlah_data / $batas);
+            $data = mysqli_query($connect, $sql);
+            $jumlah_data = mysqli_num_rows($data);
+            $total_halaman = ceil($jumlah_data / $batas);
 
-        //Get title and category with limit set
-        $query = "$sql limit $halaman_awal, $batas";
-        $articles = mysqli_query($connect, $query);
+            //Get title and category with limit set
+            $query = "$sql limit $halaman_awal, $batas";
+            $articles = mysqli_query($connect, $query);
 
-        if (mysqli_num_rows($articles) > 0) {
+            if (mysqli_num_rows($articles) > 0) {
 
-            $i = $halaman_awal + 1;
-            foreach ($articles as $article) {
-        ?>
-                <tr>
-                    <th scope="row"><?= $i ?></th>
-                    <td><?= $article['title'] ?></td>
-                    <td><?= $article['category'] ?></td>
-                    <td>
-                        <!-- a_id means article_id -->
-                        <a href="view.php?a_id=<?= $article['article_id'] ?>" class="badge bg-info">
-                            <i data-feather="eye"></i>
-                        </a>
-                        <a href="edit.php?a_id=<?= $article['article_id'] ?>" class="badge bg-warning">
-                            <i data-feather="edit"></i>
-                        </a>
-                        <a href="../process/deleteArticle.php?a_id=<?= $article['article_id'] ?>" class="badge bg-danger">
-                            <i data-feather="trash-2"></i>
-                        </a>
-                    </td>
-                </tr>
-        <?php
-                $i++;
+                $i = $halaman_awal + 1;
+                foreach ($articles as $article) {
+            ?>
+                    <tr>
+                        <th scope="row"><?= $i ?></th>
+                        <td><?= $article['title'] ?></td>
+                        <td><?= $article['category'] ?></td>
+                        <td>
+                            <!-- a_id means article_id -->
+                            <a href="view.php?a_id=<?= $article['article_id'] ?>" class="badge bg-info">
+                                <i data-feather="eye"></i>
+                            </a>
+                            <a href="edit.php?a_id=<?= $article['article_id'] ?>" class="badge bg-warning">
+                                <i data-feather="edit"></i>
+                            </a>
+                            <a href="../process/deleteArticle.php?a_id=<?= $article['article_id'] ?>" class="badge bg-danger">
+                                <i data-feather="trash-2"></i>
+                            </a>
+                        </td>
+                    </tr>
+            <?php
+                    $i++;
+                }
             }
-        }
-        ?>
-    </tbody>
-</table>
+            ?>
+        </tbody>
+    </table>
+</div>
+
 <a class="btn btn-success" href="create.php">Create New Article</a>
 <!-- Pagination Module -->
 <nav>
