@@ -5,7 +5,7 @@ define('ROOT', dirname(__DIR__, 2));
 // Check or throw
 session_start();
 if (isset($_SESSION['username']) == false) {
-    header("location:". baseURL . "login.php");
+    header("location:" . baseURL . "login.php");
 }
 
 $username = $_SESSION['username'];
@@ -119,7 +119,7 @@ $id = $_SESSION['user_id'];
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="../process/logout.php">Sign out</a></li>
+                            <li><a class="dropdown-item" href="<?= baseURL . 'process/logout.php' ?>">Sign out</a></li>
                         </ul>
                     </div>
                 </div>

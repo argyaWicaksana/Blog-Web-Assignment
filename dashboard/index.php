@@ -12,7 +12,9 @@ if (isset($_SESSION['flash_message'])) { ?>
 <?php
     unset($_SESSION['flash_message']);
 } ?>
-<div class="text-center">
+
+
+<div class="container text-center">
     <h1>Hello, <span class="admin active"><?= $username ?></span></h1>
     <hr>
     <div class="container">

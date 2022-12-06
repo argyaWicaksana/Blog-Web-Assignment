@@ -17,63 +17,66 @@ if ($role == 1) {
     <?php
         unset($_SESSION['flash_message']);
     } ?>
-    <table class="table table-striped mb-5">
-        <thead>
-            <tr>
-                <th scope="col">No</th>
-                <th scope="col">id</th>
-                <th scope="col">Category</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            // Limiter Module
-            $batas = 5;
-            $halaman = isset($_GET['halaman']) ? (int)$_GET['halaman'] : 1;
-            $halaman_awal = ($halaman > 1) ? ($halaman * $batas) - $batas : 0;
+    <div class="table-responsive">
+        <table class="table table-striped mb-5">
+            <thead>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">id</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                // Limiter Module
+                $batas = 5;
+                $halaman = isset($_GET['halaman']) ? (int)$_GET['halaman'] : 1;
+                $halaman_awal = ($halaman > 1) ? ($halaman * $batas) - $batas : 0;
 
-            // Page Number
-            $previous = $halaman - 1;
-            $next = $halaman + 1;
+                // Page Number
+                $previous = $halaman - 1;
+                $next = $halaman + 1;
 
-            // Get actual rows of data
-            $sql = "SELECT id, name FROM category";
-            $data = mysqli_query($connect, $sql);
-            $jumlah_data = mysqli_num_rows($data);
-            $total_halaman = ceil($jumlah_data / $batas);
+                // Get actual rows of data
+                $sql = "SELECT id, name FROM category";
+                $data = mysqli_query($connect, $sql);
+                $jumlah_data = mysqli_num_rows($data);
+                $total_halaman = ceil($jumlah_data / $batas);
 
-            // limiting data
-            $query = "$sql limit $halaman_awal, $batas";
-            $categories = mysqli_query($connect, $query);
+                // limiting data
+                $query = "$sql limit $halaman_awal, $batas";
+                $categories = mysqli_query($connect, $query);
 
-            if (mysqli_num_rows($categories) > 0) {
-                $i = $halaman_awal + 1;
-                foreach ($categories as $category) {
-            ?>
-                    <tr>
-                        <th scope="row"><?= $i ?></th>
-                        <td><?= $category['id'] ?></td>
-                        <td><?= $category['name'] ?></td>
-                        <td>
-                            <!-- c_id means category id -->
-                            <a href="edit.php?c_id=<?= $category['id'] ?>" class="badge bg-warning">
-                                <i data-feather="edit"></i>
-                            </a>
-                            <a href="../process/deleteCategory.php?c_id= <?= $category['id'] ?>" class="badge bg-danger" <?php if ($category['id'] == 7) {
+                if (mysqli_num_rows($categories) > 0) {
+                    $i = $halaman_awal + 1;
+                    foreach ($categories as $category) {
+                ?>
+                        <tr>
+                            <th scope="row"><?= $i ?></th>
+                            <td><?= $category['id'] ?></td>
+                            <td><?= $category['name'] ?></td>
+                            <td>
+                                <!-- cid means category id -->
+                                <a href="edit.php?cid=<?= $category['id'] ?>" class="badge bg-warning">
+                                    <i data-feather="edit"></i>
+                                </a>
+                                <a href="../process/deleteCategory.php?cid= <?= $category['id'] ?>" class="badge bg-danger" <?php if ($category['id'] == 7) {
                                                                                                                                 echo "style='display:none'";
                                                                                                                             } ?>>
-                                <i data-feather="trash-2"></i>
-                            </a>
-                        </td>
-                    </tr>
-            <?php
-                    $i++;
+                                    <i data-feather="trash-2"></i>
+                                </a>
+                            </td>
+                        </tr>
+                <?php
+                        $i++;
+                    }
                 }
-            }
-            ?>
-        </tbody>
-    </table>
+                ?>
+            </tbody>
+        </table>
+    </div>
+
     <a class="btn btn-success" href="create.php">Create New Category</a>
     <!-- Pagination Module -->
     <nav>

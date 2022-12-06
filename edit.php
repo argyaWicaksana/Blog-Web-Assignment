@@ -14,7 +14,7 @@ if ($role == 1) {
     <hr>
     <div class="row">
         <form action="../process/editCategory.php" method="post" class="col-lg-9">
-            <input type="hidden" name="cid" value="<?= $c_id ?>">
+            <input type="hidden" name="c_id" value="<?= $c_id ?>">
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
                 <input name="name" value="<?= $category['name'] ?>" type="text" class="form-control" id="name" placeholder="Enter Category Name" required>
