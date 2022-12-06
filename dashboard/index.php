@@ -20,8 +20,6 @@ if (isset($_SESSION['flash_message'])) { ?>
             <q><?= $quotes ?></q>
         </h3>
     </div>
-
-
 </div>
 
 
