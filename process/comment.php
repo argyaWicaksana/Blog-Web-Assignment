@@ -6,9 +6,6 @@
         $user_id = $_SESSION['user_id'];
         $a_id = $_POST['a_id'];
         $comment = $_POST['comment'];
-        // var_dump($user_id);
-        // var_dump($a_id);
-        // var_dump($comment);
 
         $stmt = $connect->prepare("INSERT INTO comment(user_id, article_id, comment)
         VALUES (?, ?, ?)");

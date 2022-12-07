@@ -38,7 +38,7 @@
         </div>
         <div class="mb-3">
             <label for="img" class="form-label">Image</label>
-            <input name="file" class="form-control" type="file" id="img" accept="image/png, image/gif, image/jpeg">
+            <input name="file" class="form-control" type="file" id="img" accept="image/png, image/gif, image/jpeg, image/webp">
             <!-- image preview -->
             <img class="img-fluid col-sm-9 mt-3 image-preview" src="" alt="">
         </div>

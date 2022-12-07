@@ -5,7 +5,6 @@ session_start();
 if (isset($_POST['submit'])) {
     $a_id = $_POST['a_id'];
     $c_id = $_POST['c_id'];
-    var_dump($c_id);
 
     $stmt = $connect->prepare("DELETE FROM comment WHERE id=?");
 

@@ -40,15 +40,21 @@ $article = $article->fetch_assoc();
         </div>
         <div class="mb-3">
             <label for="img" class="form-label">Image</label>
-            <input name="file" class="form-control" type="file" id="img" accept="image/png, image/gif, image/jpeg">
+            <input name="file" class="form-control" type="file" id="img" accept="image/png, image/gif, image/jpeg, image/webp">
             <!-- image-preview -->
-            <img class="img-fluid col-sm-9 mt-3 image-preview" src="<?= isset($article['img']) ? $article['img'] : '' ?>" alt="">
+            <img class="img-fluid col-sm-9 mt-3 image-preview" id="img-preview" src="<?= isset($article['img']) ? $article['img'] : '' ?>" alt="">
+            <?php
+            if (isset($article['img'])) { ?>
+                <button name="submit" type="button" id="del-img" class="mt-3 d-block btn btn-success">Delete Image</button>
+            <?php
+            }
+            ?>
         </div>
         <div class="mb-3">
             <br>
             <label for="text" class="form-label">Content</label>
             <br>
-            <input id="x" type="hidden" name="content" value="<?= $article['content'] ?>">
+            <input id="x" type="hidden" name="content" value="<?= htmlspecialchars($article['content']) ?>">
             <small>Edit your content here</small>
             <trix-editor input="x"></trix-editor>
         </div>
@@ -72,6 +78,7 @@ $article = $article->fetch_assoc();
                 reader.readAsDataURL(file)
             }
         })
+        // $('#del-img').click(()=> console.log('clicked!'))
     })
 </script>
 

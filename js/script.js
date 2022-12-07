@@ -11,6 +11,11 @@ $(document).ready(
             $('#profileimg').removeClass('d-none')
             $('#collapseWidthExample').addClass('show')
         }
-    })
+    }),
 
+    $('#del-img').click(()=>{
+        let tmp__html = '<input type="hidden" name="del_img" value="1"></input>'
+        $('form').append(tmp__html)
+        $('#img-preview').attr('src', '')
+    })
 )

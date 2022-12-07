@@ -27,7 +27,7 @@ if ($role != 1) {
     <h1><?= $article['title'] ?></h1>
     <hr>
 
-    <?php if (isset($article['img'])) { ?>
+    <?php if ($article['img'] != '') { ?>
         <img class="card-img-top" src="<?= $article['img'] ?>" alt="image">
     <?php
     } ?>
