@@ -5,7 +5,7 @@ made with `php`, `bootstrap`, and `js`
 # Features Summary
 - Auth (Login, Register) using `php password_hash & password verify`
 - Article Post, Edit, and Delete (With image too)
-- Create, Edit, Delete Comment
+- Create, Delete Comment
 - Category
 ### Dashboard
 - Manage Profile
