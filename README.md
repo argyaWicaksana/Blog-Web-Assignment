@@ -1,2 +1,13 @@
 # Blog-Web-Assignment
-blog web for college assignment
+simple CRUD blog web for college assignment
+made with `php`, `bootstrap`, and `js`
+
+# Features Summary
+- Auth (Login, Register) using `php password_hash & password verify`
+- Article Post, Edit, and Delete (With image too)
+- Create, Edit, Delete Comment
+- Category
+### Dashboard
+- Manage Profile
+- Manage Articles
+- Manange All Users, Categories, and Articles (Admin)
