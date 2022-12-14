@@ -18,7 +18,20 @@ if (isset($_SESSION['username'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | Blog Web</title>
+    <?php
+    if (isset($_GET['a_id'])) {
+        $a_id = $_GET['a_id'];
+        $title = mysqli_query($connect, "SELECT title FROM article WHERE article_id=$a_id");
+        $title = $title->fetch_assoc();
+    ?>
+        <title><?= $title['title'] ?> | Blog Web</title>
+    <?php
+    } else {
+    ?>
+        <title>Home | Blog Web</title>
+    <?php
+    }
+    ?>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
