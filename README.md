@@ -10,8 +10,9 @@ made with `php`, `bootstrap`, and `js`
 - Pagination
 - Search
 ### Dashboard
+- 2 role (user & admin)
 - Manage Profile
 - Manage Articles
 - Inspiring Quotes
-- Manange All Users, Categories, and Articles (Admin
+- Manange All Users, Categories, and Articles (Admin)
 
