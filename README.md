@@ -7,6 +7,8 @@ made with `php`, `bootstrap`, and `js`
 - Article Post, Edit, and Delete (With image too)
 - Create, Delete Comment
 - Category
+- Pagination
+- Search
 ### Dashboard
 - Manage Profile
 - Manage Articles
