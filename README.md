@@ -9,6 +9,8 @@ made with `php`, `bootstrap`, and `js`
 - Category
 - Pagination
 - Search
+- Validation
+
 ### Dashboard
 - 2 role (user & admin)
 - Manage Profile
@@ -16,3 +18,7 @@ made with `php`, `bootstrap`, and `js`
 - Inspiring Quotes
 - Manange All Users, Categories, and Articles (Admin)
 
+# Contributors
+<a href="https://github.com/argyaWicaksana/Blog-Web-Assignment/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=argyaWicaksana/Blog-Web-Assignment" />
+</a>
