@@ -7,9 +7,12 @@ made with `php`, `bootstrap`, and `js`
 - Article Post, Edit, and Delete (With image too)
 - Create, Delete Comment
 - Category
+- Pagination
+- Search
 ### Dashboard
+- 2 role (user & admin)
 - Manage Profile
 - Manage Articles
 - Inspiring Quotes
-- Manange All Users, Categories, and Articles (Admin
+- Manange All Users, Categories, and Articles (Admin)
 
