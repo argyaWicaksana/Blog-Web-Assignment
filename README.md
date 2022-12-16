@@ -10,4 +10,6 @@ made with `php`, `bootstrap`, and `js`
 ### Dashboard
 - Manage Profile
 - Manage Articles
-- Manange All Users, Categories, and Articles (Admin)
+- Inspiring Quotes
+- Manange All Users, Categories, and Articles (Admin
+
